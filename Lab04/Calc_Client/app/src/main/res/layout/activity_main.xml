@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <!-- text inputs -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_marginLeft="12pt"
+        android:layout_marginRight="12pt"
+        android:layout_marginTop="4pt">
+        <EditText
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="6pt"
+            android:id="@+id/t1"
+            android:layout_width="match_parent"
+            android:inputType="numberDecimal">
+        </EditText>
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="6pt"
+            android:id="@+id/t2"
+            android:layout_width="match_parent"
+            android:inputType="numberDecimal">
+        </EditText>
+    </LinearLayout>
+
+    <!-- plus and minus buttons -->
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2"
+        android:layout_marginTop="4pt"
+        android:layout_marginLeft="6pt"
+        android:layout_marginRight="6pt"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content">
+        <ImageButton
+            android:layout_height="25pt"
+            android:layout_width="25pt"
+            android:src="@drawable/plus_icon"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            android:id="@+id/plus">
+        </ImageButton>
+        <ImageButton
+            android:layout_height="25pt"
+            android:layout_width="25pt"
+            android:src="@drawable/minus_icon"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            android:id="@+id/minus">
+        </ImageButton>
+    </LinearLayout>
+
+    <!-- multiply and divide buttons -->
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout3"
+        android:layout_marginTop="4pt"
+        android:layout_marginLeft="6pt"
+        android:layout_marginRight="6pt"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content">
+        <ImageButton
+            android:layout_height="25pt"
+            android:layout_width="25pt"
+            android:src="@drawable/mult_icon"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            android:id="@+id/multiply">
+        </ImageButton>
+        <ImageButton
+            android:layout_height="25pt"
+            android:layout_width="25pt"
+            android:src="@drawable/div_icon"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            android:id="@+id/divide">
+        </ImageButton>
+    </LinearLayout>
+
+    <!-- output -->
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="6pt"
+        android:layout_marginRight="6pt"
+        android:textSize="12pt"
+        android:layout_marginTop="4pt"
+        android:id="@+id/displayResult"
+        android:gravity="center_horizontal">
+    </TextView>
+</LinearLayout>
