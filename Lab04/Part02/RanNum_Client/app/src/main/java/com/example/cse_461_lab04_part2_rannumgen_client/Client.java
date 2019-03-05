@@ -1,5 +1,6 @@
 package com.example.cse_461_lab04_part2_rannumgen_client;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 
 import java.net.DatagramSocket;
@@ -9,14 +10,17 @@ import java.net.UnknownHostException;
 import java.net.SocketException;
 import java.io.IOException;
 import java.nio.charset.Charset;
-
 import android.os.Build;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 
 public class Client
 {
     private DatagramSocket socket;
     private InetAddress addr;
-    static private AsyncTask<Void, Void, Void> async_client;
+    private AsyncTask<Void, Void, Void> async_client;
     public String Message = "";
     String ranNumbers = "";
 
@@ -26,8 +30,9 @@ public class Client
         catch(SocketException ex) { ex.printStackTrace(); }
     }
 
-    public String GetRandomNums()
+    public void GetRandomNums(Activity curAct)
     {
+        TextView temp = curAct.findViewById(R.id.randomNumbers);
         async_client = new AsyncTask<Void, Void, Void>()
         {
             @Override
@@ -35,7 +40,7 @@ public class Client
             {
                 byte[] buf = Message.getBytes(Charset.defaultCharset());
 
-                try { addr = InetAddress.getByName("192.168.1.69"); }
+                try { addr = InetAddress.getByName("96.44.135.45"); }
                 catch(UnknownHostException ex) { ex.printStackTrace(); }
 
                 DatagramPacket packet = new DatagramPacket(buf, buf.length, addr, 1338);
@@ -49,16 +54,15 @@ public class Client
                     ex.printStackTrace();
                 }
 
-                byte[] revBuf = new byte[1024];
-                packet = new DatagramPacket(revBuf, revBuf.length);
+                byte[] revBuf = new byte[1024000];
+                packet = new DatagramPacket(revBuf,0, revBuf.length);
 
                 try
                 {
                     socket.receive(packet);
                     ranNumbers = new String(revBuf, 0, packet.getLength());
                 }
-                catch(IOException ex)
-                {
+                catch(IOException ex) {
                     ex.printStackTrace();
                 }
 
@@ -68,9 +72,18 @@ public class Client
 
         if(Build.VERSION.SDK_INT >= 11)
             async_client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        else
+        else {
             async_client.execute();
+        }
 
-        return ranNumbers;
+        try {
+            Thread.sleep(1500);
+        }
+        catch(InterruptedException ex)
+        {
+            ex.printStackTrace();
+        }
+
+        temp.setText(ranNumbers);
     }
 }
